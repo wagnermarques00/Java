@@ -6,7 +6,7 @@ Studies carried out on the Alura platform. I will choose to put the codes in Eng
 
 ## Studied so far:
 
-1. 
+1. Java JRE and JDK (not included in this repository)
 
 ## Currently studying:
 
