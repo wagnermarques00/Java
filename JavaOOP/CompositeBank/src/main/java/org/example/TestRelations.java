@@ -10,7 +10,7 @@ public class TestRelations {
 
         Account firstAccount = new Account();
         firstAccount.agency = 123;
-        firstAccount.balance = 8000.00;
+        firstAccount.setBalance(8000.00);
         firstAccount.number = 456789;
         firstAccount.customer = firstCustomer; // associate first customer with first account
 
