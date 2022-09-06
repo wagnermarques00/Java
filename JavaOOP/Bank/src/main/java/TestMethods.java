@@ -25,5 +25,12 @@ public class TestMethods {
         } else {
             System.out.println("Second account transfer failed");
         }
+
+        account.ownerName = "Jonathan Joestar";
+        System.out.println("First account owner: " + account.ownerName);
+
+        secondAccount.ownerName = "Joseph Joestar";
+        System.out.println("Second account owner: " + secondAccount.ownerName);
+
     }
 }
