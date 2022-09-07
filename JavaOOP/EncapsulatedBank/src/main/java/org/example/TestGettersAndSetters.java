@@ -7,9 +7,8 @@ public class TestGettersAndSetters {
         firstCustomer.setClientId("938271");
         firstCustomer.setProfession("Real Estate");
 
-        Account account = new Account();
+        Account account = new Account(123, 456789 );
         account.setCustomer(firstCustomer);
-        account.setNumber(456789);
         account.deposit(8000);
         System.out.println(account.getCustomer().getName()); //Joseph Joestar
         System.out.println(account.getBalance()); //8000.0
