@@ -18,5 +18,6 @@ public class ManagerTest {
 		boolean secondAuthenticated = manager.authenticate(123456);
 		System.out.println(secondAuthenticated); // now the result is true
 
+		System.out.println(manager.calculateBonusSalary()); // will print a value based on the overridden method
 	}
 }

@@ -9,9 +9,9 @@ public class Manager extends Employee{ // Manager class inherits from employee c
 		}
 	}
 
-//	public double calculateBonusSalary() {
-//		return this.salary * 0.1;
-//	}
+	public double calculateBonusSalary() {
+		return super.calculateBonusSalary() + super.getSalary(); // super -> since manager inherits information from employee, we write it as "super"
+	}
 
 
 	public int getPassword() {
