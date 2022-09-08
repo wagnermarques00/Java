@@ -4,7 +4,8 @@ public class Employee {
 	private double salary;
 
 	public double calculateBonusSalary() {
-		return this.salary * 0.1;
+		//System.out.println("calculating employee bonus");
+		return this.salary * 0.05;
 	}
 
 	public String getName() {
