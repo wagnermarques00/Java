@@ -1,14 +1,14 @@
 public class EmployeeTest {
 
 	public static void main(String[] args) {
-		Employee employee = new Employee();
-		employee.setName("Kujo Jotaro");
-		employee.setEmployeeId("3");
-		employee.setSalary(1970.00);
+		Manager manager = new Manager();
+		manager.setName("Kujo Jotaro");
+		manager.setEmployeeId("3");
+		manager.setSalary(1970.00);
 
-		System.out.println(employee.getName()); // Kujo Jotaro
-		System.out.println(employee.getEmployeeId()); // 3
-		System.out.println(employee.getSalary()); // 1970.0
-		System.out.println(employee.calculateBonusSalary()); // 197.0 (10% of bonus)
+		System.out.println(manager.getName()); // Kujo Jotaro
+		System.out.println(manager.getEmployeeId()); // 3
+		System.out.println(manager.getSalary()); // 1970.0
+		System.out.println(manager.calculateBonusSalary()); // 2068.5 (manager bonus)
 	}
 }

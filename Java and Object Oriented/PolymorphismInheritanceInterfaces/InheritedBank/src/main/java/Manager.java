@@ -11,7 +11,7 @@ public class Manager extends Employee{ // Manager class inherits from employee c
 
 	public double calculateBonusSalary() {
 		System.out.println("calculating manager bonus");
-		return super.calculateBonusSalary() + super.getSalary(); // super -> since manager inherits information from employee, we write it as "super"
+		return super.getSalary(); // super -> since manager inherits information from employee, we write it as "super"
 	}
 
 

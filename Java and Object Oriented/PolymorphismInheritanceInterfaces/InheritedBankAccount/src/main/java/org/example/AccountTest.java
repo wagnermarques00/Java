@@ -10,9 +10,8 @@ public class AccountTest {
 		savingsAccount.deposit(1000);
 
 		checkingAccount.transfer(10.0, savingsAccount);
-		System.out.println("CA: " + checkingAccount.getBalance()); // 479.8 (after transfer and fee calculation)
+		System.out.println("CA: " + checkingAccount.getBalance()); // 489.8 (after transfer and fee calculation)
 		System.out.println("SA: " + savingsAccount.getBalance()); // 1010.0 (after transfer)
-
 	}
 
 }

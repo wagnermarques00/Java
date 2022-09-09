@@ -1,7 +1,7 @@
 package org.example;
 
-public class Account {
-	private double balance;
+public abstract class Account {
+	protected double balance;
 	private int agency;
 	private int number;
 	private Customer customer;
@@ -13,9 +13,7 @@ public class Account {
 		Account.totalAccounts++;
 	}
 
-	public void deposit(double amount) {
-		this.balance += amount;
-	}
+	public abstract void deposit(double amount); // method without body, there is no implementation in it
 
 	public boolean withdraw(double amount) {
 		if(this.balance >= amount) {

@@ -1,12 +1,9 @@
-public class Employee {
+public abstract class Employee { // cannot instantiate this class because it is abstract
 	private String name;
 	private String employeeId;
 	private double salary;
 
-	public double calculateBonusSalary() {
-		//System.out.println("calculating employee bonus");
-		return this.salary * 0.05;
-	}
+	public abstract double calculateBonusSalary(); // method without body, there is no implementation in it
 
 	public String getName() {
 		return name;
