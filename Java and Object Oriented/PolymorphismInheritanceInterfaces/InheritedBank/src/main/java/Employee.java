@@ -28,4 +28,5 @@ public abstract class Employee { // cannot instantiate this class because it is 
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
+
 }
