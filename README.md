@@ -9,6 +9,7 @@ Studies carried out on the Alura platform. I will choose to put the codes in Eng
 1. Java JRE and JDK (not included in this repository)
 1. Java OO: Understanding Object Orientation
 1. Java Polymorphism: understand inheritance and interfaces
+1. What are Enums in java
 
 ## Currently studying:
 
