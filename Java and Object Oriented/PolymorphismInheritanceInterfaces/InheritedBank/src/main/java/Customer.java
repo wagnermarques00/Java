@@ -1,14 +1,18 @@
 public class Customer implements Authenticable { //Customer signs an "Authenticable" contract
-	private int password;
+	private Authenticator authenticator;
+
+	public Customer() {
+		this.authenticator = new Authenticator();
+	}
 
 	@Override
 	public boolean authenticate(int password) {
-		return this.password == password;
+		return this.authenticator.authenticate(password);
 	}
 
 	@Override
 	public void setPassword(int password) {
-		this.password = password;
+		this.authenticator.setPassword(password);
 	}
 
 }

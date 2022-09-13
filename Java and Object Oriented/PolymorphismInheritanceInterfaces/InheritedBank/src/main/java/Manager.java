@@ -1,5 +1,9 @@
 public class Manager extends Employee implements Authenticable { // Manager is an employee and signs an "Authenticable" contract
-	private int password;
+	private Authenticator authenticator;
+
+	public Manager() {
+		this.authenticator = new Authenticator();
+	}
 
 	public double calculateBonusSalary() {
 		System.out.println("calculating manager bonus");
@@ -8,12 +12,12 @@ public class Manager extends Employee implements Authenticable { // Manager is a
 
 	@Override
 	public boolean authenticate(int password) {
-		return this.password == password;
+		return this.authenticator.authenticate(password);
 	}
 
 	@Override
 	public void setPassword(int password) {
-		this.password = password;
+		this.authenticator.setPassword(password);
 	}
 
 }

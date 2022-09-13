@@ -1,5 +1,9 @@
 public class Administrator extends Employee implements Authenticable { //Administrator is an employee and signs an "Authenticable" contract
-	private int password;
+	private Authenticator authenticator;
+
+	public Administrator() {
+		this.authenticator = new Authenticator();
+	}
 
 	@Override
 	public double calculateBonusSalary() {
@@ -9,12 +13,12 @@ public class Administrator extends Employee implements Authenticable { //Adminis
 
 	@Override
 	public boolean authenticate(int password) {
-		return this.password == password;
+		return this.authenticator.authenticate(password);
 	}
 
 	@Override
 	public void setPassword(int password) {
-		this.password = password;
+		this.authenticator.setPassword(password);
 	}
 
 }
