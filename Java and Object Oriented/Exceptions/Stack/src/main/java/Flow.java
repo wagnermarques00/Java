@@ -20,4 +20,18 @@ public class Flow {
 		System.out.println("End of the method2");
 	}
 
+	/* *** Following the flow, the result will be as below ***
+	 * Start of the main
+	 * Start of the method1
+	 * Start of the method2
+	 * 1
+	 * 2
+	 * 3
+	 * 4
+	 * 5
+	 * End of the method2
+	 * End of the method1
+	 * End of the main
+	 */
+
 }
