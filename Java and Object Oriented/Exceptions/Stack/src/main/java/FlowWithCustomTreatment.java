@@ -1,6 +1,6 @@
-public class FlowWithTreatment {
+public class FlowWithCustomTreatment {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MyException {
 		System.out.println("Start of the main");
 		try {
 			method1();
@@ -11,16 +11,16 @@ public class FlowWithTreatment {
 		System.out.println("End of the main");
 	}
 
-	private static void method1() {
+	private static void method1() throws MyException {
 		System.out.println("Start of the method1");
 		method2();
 		System.out.println("End of the method1");
 	}
 
-	private static void method2() {
+	private static void method2() throws MyException {
 		System.out.println("Start of the method2");
 
-		throw new ArithmeticException("Got an exception");
+		throw new MyException("Got a custom exception");
 
 //		System.out.println("End of the method2"); // -> since an exception was thrown earlier, we will have this unreachable code
 	}
@@ -41,16 +41,14 @@ public class FlowWithTreatment {
  * End of the main
  */
 
-/* ** Example of a thrown ArithmeticException: throw new ArithmeticException("Got an exception"); **
+/* ** Example of a thrown MyException: throw new MyException("Got a custom exception"); **
  * *** If you caused this exception inside the for structure in method2, the output will be as below ***
  *
  * Start of the main
  * Start of the method1
  * Start of the method2
- * Exception: Got an exception
- * End of the main
- * java.lang.ArithmeticException: Got an exception
+ * Exception in thread "main" MyException: Got a custom exception
  * 	at FlowWithTreatment.method2(FlowWithTreatment.java:23)
  * 	at FlowWithTreatment.method1(FlowWithTreatment.java:16)
- *   at FlowWithTreatment.main(FlowWithTreatment.java:6)
+ * 	at FlowWithTreatment.main(FlowWithTreatment.java:6)
  */

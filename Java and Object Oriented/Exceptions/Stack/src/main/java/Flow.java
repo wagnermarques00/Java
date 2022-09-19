@@ -4,14 +4,14 @@ public class Flow {
 		System.out.println("Start of the main");
 		try {
 			method1();
-		} catch (ArithmeticException | NullPointerException ex) {
+		} catch (ArithmeticException | NullPointerException | MyException ex) {
 			System.out.println("Exception: " + ex.getMessage()); // Exception: message of the exception
 			ex.printStackTrace(); // It will show the standard exception message, but it will follow the execution flow
 		}
 		System.out.println("End of the main");
 	}
 
-	private static void method1() {
+	private static void method1() throws MyException {
 		System.out.println("Start of the method1");
 		method2();
 		System.out.println("End of the method1");

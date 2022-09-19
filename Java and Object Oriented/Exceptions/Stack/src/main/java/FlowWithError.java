@@ -1,4 +1,4 @@
-public class FlowWithTreatment {
+public class FlowWithError {
 
 	public static void main(String[] args) {
 		System.out.println("Start of the main");
@@ -18,11 +18,9 @@ public class FlowWithTreatment {
 	}
 
 	private static void method2() {
-		System.out.println("Start of the method2");
-
-		throw new ArithmeticException("Got an exception");
-
-//		System.out.println("End of the method2"); // -> since an exception was thrown earlier, we will have this unreachable code
+		System.out.println("Calling method2");
+		method2(); // It will cause a stack overflow
+		System.out.println("End of the method2");
 	}
 
 }
