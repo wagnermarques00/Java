@@ -1,4 +1,4 @@
-public class Flow {
+public class FlowWithTreatment {
 
 	public static void main(String[] args) {
 		System.out.println("Start of the main");
@@ -19,16 +19,14 @@ public class Flow {
 
 	private static void method2() {
 		System.out.println("Start of the method2");
-		for (int i = 1; i <= 5; i++) {
-			System.out.println(i);
-			int a = i / 0;  // --> Will cause an Arithmetic exception
-			NullClass nullClass = null;
-			nullClass.deposit(); // --> Will cause a Null Pointer exception
-		}
-		System.out.println("End of the method2");
+
+		throw new ArithmeticException("Got an exception");
+
+//		System.out.println("End of the method2"); // -> since an exception was thrown earlier, we will have this unreachable code
 	}
 
 }
+
 /* *** Following the flow, the expected result will be as below ***
  * Start of the main
  * Start of the method1
@@ -43,28 +41,16 @@ public class Flow {
  * End of the main
  */
 
-/* ** Example of ArithmeticException: int a=i/0; **
+/* ** Example of a thrown ArithmeticException: ArithmeticException ex = new ArithmeticException("Got an exception");  ->  throw ex; **
  * *** If you caused this exception inside the for structure in method2, the output will be as below ***
  *
  * Start of the main
  * Start of the method1
  * Start of the method2
- * 1
- * Exception in thread "main" java.lang.ArithmeticException: / by zero
- * 	at Flow.method2(Flow.java:19)
- * 	at Flow.method1(Flow.java:11)
- * 	at Flow.main(Flow.java:5)
- */
-
-/* ** Example of NullPointerException: NullClass nullClass = null;  ->  nullClass.deposit(); **
- * *** If you caused this exception inside the for structure in method2, the output will be as below ***
- *
- * Start of the main
- * Start of the method1
- * Start of the method2
- * 1
- * Exception in thread "main" java.lang.NullPointerException
- * 	at Flow.method2(Flow.java:22)
- * 	at Flow.method1(Flow.java:11)
- * 	at Flow.main(Flow.java:5)
+ * Exception: Got an exception
+ * End of the main
+ * java.lang.ArithmeticException: Got an exception
+ * 	at FlowWithTreatment.method2(FlowWithTreatment.java:23)
+ * 	at FlowWithTreatment.method1(FlowWithTreatment.java:16)
+ *   at FlowWithTreatment.main(FlowWithTreatment.java:6)
  */
