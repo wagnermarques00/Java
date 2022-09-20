@@ -4,7 +4,7 @@ public class Flow {
 		System.out.println("Start of the main");
 		try {
 			method1();
-		} catch (ArithmeticException | NullPointerException | MyException ex) {
+		} catch (Exception ex) {
 			System.out.println("Exception: " + ex.getMessage()); // Exception: message of the exception
 			ex.printStackTrace(); // It will show the standard exception message, but it will follow the execution flow
 		}
@@ -22,8 +22,6 @@ public class Flow {
 		for (int i = 1; i <= 5; i++) {
 			System.out.println(i);
 			int a = i / 0;  // --> Will cause an Arithmetic exception
-			NullClass nullClass = null;
-			nullClass.deposit(); // --> Will cause a Null Pointer exception
 		}
 		System.out.println("End of the method2");
 	}

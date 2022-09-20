@@ -4,7 +4,7 @@ public class FlowWithTreatment {
 		System.out.println("Start of the main");
 		try {
 			method1();
-		} catch (ArithmeticException | NullPointerException ex) {
+		} catch (Exception ex) {
 			System.out.println("Exception: " + ex.getMessage()); // Exception: message of the exception
 			ex.printStackTrace(); // It will show the standard exception message, but it will follow the execution flow
 		}

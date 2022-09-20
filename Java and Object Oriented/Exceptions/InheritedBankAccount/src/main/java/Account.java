@@ -1,9 +1,9 @@
 public abstract class Account {
+	private static int totalAccounts; // This will be a shared attribute (not instantiated) between account objects
 	protected double balance;
 	private int agency;
 	private int number;
 	private Customer customer;
-	private static int totalAccounts; // This will be a shared attribute (not instantiated) between account objects
 
 	public Account(int agency, int number) {
 		this.agency = agency;
@@ -11,22 +11,23 @@ public abstract class Account {
 		Account.totalAccounts++;
 	}
 
-	public abstract void deposit(double amount); // method without body, there is no implementation in it
-
-	public boolean withdraw(double amount) {
-		if(this.balance >= amount) {
-			this.balance -= amount;
-			return true;
-		}
-		return false;
+	public static int getTotalAccounts() {
+		return Account.totalAccounts;
 	}
 
-	public boolean transfer(double amount, Account destinationAccount) {
-		if(this.withdraw(amount)) {
-			destinationAccount.deposit(amount);
-			return true;
+	public abstract void deposit(double amount); // method without body, there is no implementation in it
+
+	public void withdraw(double amount) throws InsufficientBalanceException {
+
+		if (this.balance < amount) {
+			throw new InsufficientBalanceException("Balance: " + this.balance + " is insufficient to withdraw " + amount);
 		}
-		return false;
+		this.balance -= amount;
+	}
+
+	public void transfer(double amount, Account destinationAccount) throws InsufficientBalanceException {
+		this.withdraw(amount);
+		destinationAccount.deposit(amount);
 	}
 
 	public double getBalance() {
@@ -50,7 +51,7 @@ public abstract class Account {
 	}
 
 	public void setAgency(int agency) {
-		if(agency <= 0) {
+		if (agency <= 0) {
 			System.out.println("Agency must be greater than zero");
 			return;
 		}
@@ -63,9 +64,5 @@ public abstract class Account {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-
-	public static int getTotalAccounts() {
-		return Account.totalAccounts;
 	}
 }
