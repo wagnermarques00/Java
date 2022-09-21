@@ -3,6 +3,7 @@ package br.com.bytebank.bank.test;
 import br.com.bytebank.bank.model.CheckingAccount;
 import br.com.bytebank.bank.model.InsufficientBalanceException;
 import br.com.bytebank.bank.model.SavingsAccount;
+import br.com.bytebank.bank.special.SpecialAccount;
 
 public class AccountTest {
 
@@ -12,6 +13,9 @@ public class AccountTest {
 
 		SavingsAccount savingsAccount = new SavingsAccount(111, 222);
 		savingsAccount.deposit(1000);
+
+		SpecialAccount specialAccount = new SpecialAccount(111,333);
+		specialAccount.getBalance();
 
 		checkingAccount.transfer(10.0, savingsAccount);
 		System.out.println("CA: " + checkingAccount.getBalance()); // 489.8 (after transfer and fee calculation)
