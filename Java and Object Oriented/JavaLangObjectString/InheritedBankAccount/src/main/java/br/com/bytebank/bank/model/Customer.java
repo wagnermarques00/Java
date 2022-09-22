@@ -2,6 +2,7 @@ package br.com.bytebank.bank.model;
 
 /**
  * Class that represents a customer of the Bytebank bank
+ *
  * @author wagnermarques00
  * @version 0.1
  */
@@ -33,5 +34,10 @@ public class Customer {
 
 	public void setProfession(String profession) {
 		this.profession = profession;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer - " + "name: " + name + ", clientId: " + clientId + ", profession: " + profession;
 	}
 }

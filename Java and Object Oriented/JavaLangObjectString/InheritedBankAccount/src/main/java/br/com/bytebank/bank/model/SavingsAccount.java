@@ -10,4 +10,9 @@ public class SavingsAccount extends Account {
 	public void deposit(double amount) {
 		super.balance += amount;
 	}
+
+	@Override
+	public String toString() {
+		return "Savings Account - " + super.toString();
+	}
 }

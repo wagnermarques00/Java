@@ -14,7 +14,7 @@ public abstract class Account {
 	private Customer customer;
 
 	/**
-	 *Constructor to initialize "account" object from agency and number
+	 * Constructor to initialize "account" object from agency and number
 	 *
 	 * @param agency
 	 * @param number
@@ -32,7 +32,7 @@ public abstract class Account {
 	public abstract void deposit(double amount);
 
 	/**
-	 *To be able to withdraw, the amount must be greater than the balance
+	 * To be able to withdraw, the amount must be greater than the balance
 	 *
 	 * @param amount
 	 * @throws InsufficientBalanceException
@@ -84,5 +84,10 @@ public abstract class Account {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	@Override
+	public String toString() {
+		return "Agency: " + this.agency + ", Number: " + this.number;
 	}
 }
