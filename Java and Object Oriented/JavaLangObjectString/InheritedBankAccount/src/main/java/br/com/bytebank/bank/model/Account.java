@@ -1,5 +1,11 @@
 package br.com.bytebank.bank.model;
 
+/**
+ * This class represents the templates of an account
+ *
+ * @author wagnermarques00
+ */
+
 public abstract class Account {
 	private static int totalAccounts;
 	protected double balance;
@@ -7,6 +13,12 @@ public abstract class Account {
 	private int number;
 	private Customer customer;
 
+	/**
+	 *Constructor to initialize "account" object from agency and number
+	 *
+	 * @param agency
+	 * @param number
+	 */
 	public Account(int agency, int number) {
 		this.agency = agency;
 		this.number = number;
@@ -19,6 +31,12 @@ public abstract class Account {
 
 	public abstract void deposit(double amount);
 
+	/**
+	 *To be able to withdraw, the amount must be greater than the balance
+	 *
+	 * @param amount
+	 * @throws InsufficientBalanceException
+	 */
 	public void withdraw(double amount) throws InsufficientBalanceException {
 
 		if (this.balance < amount) {

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="InheritedBankAccount">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/InheritedBankAccount.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
