@@ -5,7 +5,7 @@ import br.com.bytebank.bank.model.CheckingAccount;
 
 import java.util.ArrayList;
 
-public class Test {
+public class ArrayListTest {
 
 	public static void main(String[] args) {
 		ArrayList<Account> accountsList = new ArrayList<Account>(); // <> Generics

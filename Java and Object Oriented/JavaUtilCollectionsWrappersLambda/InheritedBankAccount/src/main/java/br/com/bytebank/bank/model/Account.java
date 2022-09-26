@@ -49,6 +49,19 @@ public abstract class Account {
 		destinationAccount.deposit(amount);
 	}
 
+	@Override
+	public boolean equals(Object anotherAccount) {
+		Account otherAccount = (Account) anotherAccount;
+
+		if(this.agency != otherAccount.agency) {
+			return false;
+		}
+		if(this.number != otherAccount.number) {
+			return false;
+		}
+		return true;
+	}
+
 	public double getBalance() {
 		return this.balance;
 	}
