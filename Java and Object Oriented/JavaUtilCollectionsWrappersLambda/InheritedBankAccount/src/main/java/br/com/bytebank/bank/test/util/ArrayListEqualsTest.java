@@ -27,8 +27,8 @@ public class ArrayListEqualsTest {
 			System.out.println(account);
 			/*
 			 * -> called the toString method
-			 * Checking Account - Agency: 111, Number: 222
-			 * Checking Account - Agency: 333, Number: 444
+			 * Checking Account - Agency: 111, Number: 222, Balance: 0.0
+			 * Checking Account - Agency: 333, Number: 444, Balance: 0.0
 			 */
 		}
 	}

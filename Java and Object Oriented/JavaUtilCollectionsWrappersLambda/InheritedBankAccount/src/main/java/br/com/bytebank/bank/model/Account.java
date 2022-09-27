@@ -6,7 +6,7 @@ package br.com.bytebank.bank.model;
  * @author wagnermarques00
  */
 
-public abstract class Account {
+public abstract class Account implements Comparable<Account> {
 	private static int totalAccounts;
 	protected double balance;
 	private int agency;
@@ -29,7 +29,10 @@ public abstract class Account {
 		return Account.totalAccounts;
 	}
 
-	public abstract void deposit(double amount);
+	public void transfer(double amount, Account destinationAccount) throws InsufficientBalanceException {
+		this.withdraw(amount);
+		destinationAccount.deposit(amount);
+	}
 
 	/**
 	 * To be able to withdraw, the amount must be greater than the balance
@@ -44,10 +47,7 @@ public abstract class Account {
 		this.balance -= amount;
 	}
 
-	public void transfer(double amount, Account destinationAccount) throws InsufficientBalanceException {
-		this.withdraw(amount);
-		destinationAccount.deposit(amount);
-	}
+	public abstract void deposit(double amount);
 
 	@Override
 	public boolean equals(Object anotherAccount) {
@@ -56,10 +56,12 @@ public abstract class Account {
 		if(this.agency != otherAccount.agency) {
 			return false;
 		}
-		if(this.number != otherAccount.number) {
-			return false;
-		}
-		return true;
+		return this.number == otherAccount.number;
+	}
+
+	@Override
+	public String toString() {
+		return "Agency: " + this.agency + ", Number: " + this.number + ", Balance: " + this.balance;
 	}
 
 	public double getBalance() {
@@ -99,7 +101,8 @@ public abstract class Account {
 	}
 
 	@Override
-	public String toString() {
-		return "Agency: " + this.agency + ", Number: " + this.number;
+	public int compareTo(Account anotherAccount) {
+		return Double.compare(this.balance, anotherAccount.balance);
 	}
+
 }

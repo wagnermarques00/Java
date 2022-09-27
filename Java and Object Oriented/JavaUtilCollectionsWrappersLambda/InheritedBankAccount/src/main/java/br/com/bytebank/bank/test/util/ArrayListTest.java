@@ -34,9 +34,9 @@ public class ArrayListTest {
 			System.out.println(account);
 			/*
 			 * -> called the toString method
-			 * Checking Account - Agency: 333, Number: 444
-			 * Checking Account - Agency: 555, Number: 666
-			 * Checking Account - Agency: 777, Number: 888
+			 * Checking Account - Agency: 333, Number: 444, Balance: 0.0
+			 * Checking Account - Agency: 555, Number: 666, Balance: 0.0
+			 * Checking Account - Agency: 777, Number: 888, Balance: 0.0
 			 */
 		}
 	}
