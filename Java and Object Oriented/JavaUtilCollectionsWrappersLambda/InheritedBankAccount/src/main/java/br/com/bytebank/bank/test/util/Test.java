@@ -7,6 +7,7 @@ import br.com.bytebank.bank.model.SavingsAccount;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Test {
@@ -43,59 +44,56 @@ public class Test {
 		list.add(cc4);
 
 		System.out.println("Before numberComparator");
-		for(Account account : list) {
-			System.out.println(account + " customer -> " + account.getCustomer().getName());
-			/*
-			 * Checking Account - Agency: 22, Number: 33, Balance: 333.0 customer -> Tenya Iida
-			 * Savings Account - Agency: 22, Number: 44, Balance: 444.0 customer -> Katsuki Bakugo
-			 * Checking Account - Agency: 22, Number: 11, Balance: 111.0 customer -> Ochaco Uraraka
-			 * Savings Account - Agency: 22, Number: 22, Balance: 222.0 customer -> Izuku Midoriya
-			 */
-		}
+		list.forEach((account) -> System.out.println(account + " customer -> " + account.getCustomer().getName()));
+		/*
+		 * Checking Account - Agency: 22, Number: 33, Balance: 333.0 customer -> Tenya Iida
+		 * Savings Account - Agency: 22, Number: 44, Balance: 444.0 customer -> Katsuki Bakugo
+		 * Checking Account - Agency: 22, Number: 11, Balance: 111.0 customer -> Ochaco Uraraka
+		 * Savings Account - Agency: 22, Number: 22, Balance: 222.0 customer -> Izuku Midoriya
+		 */
 
-		// NumberComparatorTest numberComparator = ; new NumberComparatorTest();
-		// Instead of put numberComparator in list.sort, you can replace this with the code below
-		list.sort(new NumberComparatorTest());
+		list.sort((a1, a2) -> Integer.compare(a1.getNumber(), a2.getNumber()));
 
 		System.out.println("---------------------");
 		System.out.println("After numberComparator");
-		for(Account account : list) {
-			System.out.println(account + " customer -> " + account.getCustomer().getName());
-			/*
-			 * Checking Account - Agency: 22, Number: 11, Balance: 111.0 customer -> Ochaco Uraraka
-			 * Savings Account - Agency: 22, Number: 22, Balance: 222.0 customer -> Izuku Midoriya
-			 * Checking Account - Agency: 22, Number: 33, Balance: 333.0 customer -> Tenya Iida
-			 * Savings Account - Agency: 22, Number: 44, Balance: 444.0 customer -> Katsuki Bakugo
-			 */
-		}
+		list.forEach((account) -> System.out.println(account + " customer -> " + account.getCustomer().getName()));
+		/*
+		 * Checking Account - Agency: 22, Number: 11, Balance: 111.0 customer -> Ochaco Uraraka
+		 * Savings Account - Agency: 22, Number: 22, Balance: 222.0 customer -> Izuku Midoriya
+		 * Checking Account - Agency: 22, Number: 33, Balance: 333.0 customer -> Tenya Iida
+		 * Savings Account - Agency: 22, Number: 44, Balance: 444.0 customer -> Katsuki Bakugo
+		 */
 
-		list.sort(new CustomerComparatorTest());
+		Comparator<Account> comparator = (Account c1, Account c2) -> {
+			String c1Name = c1.getCustomer().getName();
+			String c2Name = c2.getCustomer().getName();
+			return c1Name.compareTo(c2Name);
+		};
+		list.sort(comparator);
 
 		System.out.println("---------------------");
 		System.out.println("After customerComparator(balance)");
-		for(Account account : list) {
-			System.out.println(account + " customer -> " + account.getCustomer().getName());
-			/*
-			 * Savings Account - Agency: 22, Number: 22, Balance: 222.0 customer -> Izuku Midoriya
-			 * Savings Account - Agency: 22, Number: 44, Balance: 444.0 customer -> Katsuki Bakugo
-			 * Checking Account - Agency: 22, Number: 11, Balance: 111.0 customer -> Ochaco Uraraka
-			 * Checking Account - Agency: 22, Number: 33, Balance: 333.0 customer -> Tenya Iida
-			 */
-		}
+		list.forEach((account) -> System.out.println(account + " customer -> " + account.getCustomer().getName()));
+		/*
+		 * Savings Account - Agency: 22, Number: 22, Balance: 222.0 customer -> Izuku Midoriya
+		 * Savings Account - Agency: 22, Number: 44, Balance: 444.0 customer -> Katsuki Bakugo
+		 * Checking Account - Agency: 22, Number: 11, Balance: 111.0 customer -> Ochaco Uraraka
+		 * Checking Account - Agency: 22, Number: 33, Balance: 333.0 customer -> Tenya Iida
+		 */
 
 		Collections.sort(list);
+
 		System.out.println("---------------------");
 		System.out.println("After Collections.sort");
-		for(Account account : list) {
-			System.out.println(account + " customer -> " + account.getCustomer().getName());
-			/*
-			 * Checking Account - Agency: 22, Number: 11 customer -> Ochaco Uraraka balance -> 111.0
-			 * Savings Account - Agency: 22, Number: 22 customer -> Izuku Midoriya balance -> 222.0
-			 * Checking Account - Agency: 22, Number: 33 customer -> Tenya Iida balance -> 333.0
-			 * Savings Account - Agency: 22, Number: 44 customer -> Katsuki Bakugo balance -> 444.0
-			 */
-		}
-
+		list.forEach((account) -> System.out.println(account + " customer -> " + account.getCustomer().getName()));
+		/*
+		 * Checking Account - Agency: 22, Number: 11 customer -> Ochaco Uraraka balance -> 111.0
+		 * Savings Account - Agency: 22, Number: 22 customer -> Izuku Midoriya balance -> 222.0
+		 * Checking Account - Agency: 22, Number: 33 customer -> Tenya Iida balance -> 333.0
+		 * Savings Account - Agency: 22, Number: 44 customer -> Katsuki Bakugo balance -> 444.0
+		 */
 	}
 
 }
+
+

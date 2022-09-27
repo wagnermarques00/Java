@@ -13,7 +13,8 @@ Studies carried out on the Alura platform. I will choose to put the codes in Eng
 1. What are Annotations in Java (no code to include in this repository)
 1. Java Exceptions: Learn to Create, Throw, and Handle Exceptions
 1. Java and java.lang: program with the Object and String class
+1. Java and java.util: Collections, Wrappers and Lambda expressions
 
 ## Currently studying:
 
-- Java and java.util: Collections, Wrappers and Lambda expressions
+- 
