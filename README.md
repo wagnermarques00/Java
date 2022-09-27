@@ -17,4 +17,4 @@ Studies carried out on the Alura platform. I will choose to put the codes in Eng
 
 ## Currently studying:
 
-- 
+- Java and java.io: Streams, Reader and Writers
