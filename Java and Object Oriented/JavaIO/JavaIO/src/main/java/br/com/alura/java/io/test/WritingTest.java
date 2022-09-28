@@ -9,7 +9,7 @@ import java.io.Writer;
 
 public class WritingTest {
 
-		public static void main(String[] args) throws IOException { // Output stream with file
+	public static void main(String[] args) throws IOException { // Output stream with file
 		OutputStream fos = new FileOutputStream("StarWarsIpsum.txt"); // -> File that will be used as an example
 		Writer osw = new OutputStreamWriter(fos);
 		BufferedWriter bw = new BufferedWriter(osw);
