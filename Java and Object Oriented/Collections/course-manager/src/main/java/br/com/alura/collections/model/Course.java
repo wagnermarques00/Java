@@ -30,4 +30,12 @@ public class Course {
 		return Collections.unmodifiableList(lessons); // Returns an unmodifiable view of the specified list. Read Only.
 	}
 
+	@Override
+	public String toString() {
+		return "{Course: " + name + ", " + instructor + ", total time: " + this.getTotalTimeInMinutes() + " minutes, Lessons: " + this.lessons + "}";
+	}
+
+	public int getTotalTimeInMinutes() {
+		return this.lessons.stream().mapToInt(Lesson::getLessonTimeInMinutes).sum();
+	}
 }

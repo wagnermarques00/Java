@@ -1,6 +1,6 @@
 package br.com.alura.collections.model;
 
-public class Lesson implements Comparable<Lesson>{
+public class Lesson implements Comparable<Lesson> {
 	private final String lessonTitle;
 	private final Integer lessonTimeInMinutes;
 

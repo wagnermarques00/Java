@@ -18,11 +18,6 @@ public class TestingCourses {
 		javaCollections.add(new Lesson("Creating a lesson", 20));
 		javaCollections.add(new Lesson("Modeling with collections", 22));
 		System.out.println(javaCollections.getLessons()); // [{Lesson: Working with ArrayLists, 21 minutes}, {Lesson: Creating a lesson, 20 minutes}, {Lesson: Modeling with collections, 22 minutes}]
-
-
-
-
-
 	}
 
 }
