@@ -23,7 +23,7 @@ public class ComparingArrayListHashSet {
 		long arrayRuntime = arrayEnd - arrayStart;
 
 		System.out.println("Time spent in Arraylist: " + arrayRuntime + " ms");
-		
+
 //		Testing performance of HashSet
 		Collection<Integer> hashsetNumbers = new HashSet<>();
 		long hashsetStart = System.currentTimeMillis();
