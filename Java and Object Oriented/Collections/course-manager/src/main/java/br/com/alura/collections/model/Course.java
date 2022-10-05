@@ -25,6 +25,10 @@ public class Course {
 		this.students.add(student);
 	}
 
+	public boolean isEnrolled(Student student) {
+		return this.students.contains(student);
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -49,5 +53,6 @@ public class Course {
 	public int getTotalTimeInMinutes() {
 		return this.lessons.stream().mapToInt(Lesson::getLessonTimeInMinutes).sum();
 	}
+
 
 }

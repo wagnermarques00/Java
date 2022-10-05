@@ -22,14 +22,26 @@ public class TestingCoursesWithStudents {
 		javaCollections.enrollStudent(s3);
 
 		System.out.println("-> Showing students");
-		javaCollections.getStudents().forEach( student -> System.out.println(student));
+		javaCollections.getStudents().forEach(student -> System.out.println(student));
 		/*
 		 * {Student: Asano Mizuho, id: 269169922}
 		 * {Student: Asano Keigo, id: 429266419}
 		 * {Student: Arisawa Tatsuki, id: 222055768}
 		 */
 
-		
+		System.out.println("-> Asano Keigo is enrolled");
+		System.out.println(javaCollections.isEnrolled(s1)); // true
+
+		System.out.println("-> Yammy Llargo is enrolled");
+		Student s4 = new Student("Yammy Llargo", 252192302);
+		System.out.println(javaCollections.isEnrolled(s4)); // false
+
+		System.out.println("-> s1 = asanoKeigo?");
+		Student asanoKeigo = new Student("Asano Keigo", 429266419);
+		System.out.println(s1.equals(asanoKeigo)); // false (before override) true (after override)
+
+//		obligatorily the below is true
+		System.out.println(s1.hashCode() == asanoKeigo.hashCode()); // true
 	}
 
 }
