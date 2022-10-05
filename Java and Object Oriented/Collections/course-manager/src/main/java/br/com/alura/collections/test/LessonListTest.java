@@ -27,11 +27,6 @@ public class LessonListTest {
 		Collections.sort(lessons, Comparator.comparing(Lesson::getLessonTimeInMinutes)); // Same result as bellow
 		lessons.sort(Comparator.comparing(Lesson::getLessonTimeInMinutes)); // Same result as above
 		System.out.println(lessons); // [{Lesson: Object lists, 14 minutes}, {Lesson: Object list relationship, 15 minutes}, {Lesson: Revisiting ArrayLists, 21 minutes}]
-
-
-
-
-
 	}
 
 }

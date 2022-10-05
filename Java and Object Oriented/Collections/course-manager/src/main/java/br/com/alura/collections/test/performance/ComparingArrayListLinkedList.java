@@ -1,4 +1,4 @@
-package br.com.alura.collections.test;
+package br.com.alura.collections.test.performance;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
