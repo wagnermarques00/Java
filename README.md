@@ -19,4 +19,4 @@ Studies carried out on the Alura platform. I will choose to put the codes in Eng
 
 ## Currently studying:
 
-- 
+- Java 8: discover what's new in this version
