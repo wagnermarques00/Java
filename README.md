@@ -15,7 +15,8 @@ Studies carried out on the Alura platform. I will choose to put the codes in Eng
 1. Java and java.lang: program with the Object and String class
 1. Java and java.util: Collections, Wrappers and Lambda expressions
 1. Java and java.io: Streams, Reader and Writers
+1. Java Collections: Mastering Lists, Sets, and Maps
 
 ## Currently studying:
 
-- Java Collections: Mastering Lists, Sets, and Maps
+- 

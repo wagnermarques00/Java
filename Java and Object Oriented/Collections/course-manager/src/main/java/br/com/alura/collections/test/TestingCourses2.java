@@ -26,7 +26,7 @@ public class TestingCourses2 {
 		System.out.println(lessons); // [{Lesson: Creating a lesson, 20 minutes}, {Lesson: Modeling with collections, 22 minutes}, {Lesson: Working with ArrayLists, 21 minutes}]
 
 		System.out.println("-> Total minutes so far");
-		System.out.println(javaCollections.getTotalTimeInMinutes()); // 63
+		System.out.println(javaCollections.calculateTotalTimeInMinutes()); // 63
 
 		System.out.println("-> Course toString");
 		System.out.println(javaCollections); // {Course: Mastering Java Collections, Byakuya Kuchiki, total time: 63 minutes, Lessons: [{Lesson: Working with ArrayLists, 21 minutes}, {Lesson: Creating a lesson, 20 minutes}, {Lesson: Modeling with collections, 22 minutes}]}
