@@ -1,4 +1,4 @@
-# Java
+# Java :coffee:
 
 Studies carried out on the Alura platform. I will choose to put the codes in English during the courses.
 
