@@ -3,7 +3,6 @@ package br.com.alura.java8.test;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class StringSort {
 
@@ -13,13 +12,10 @@ public class StringSort {
 		words.add("another word"); // length() = 12
 		words.add("other words"); // length() = 11
 
-		Comparator<String> comparator = new ComparingBySize();
-		words.sort(comparator);
+		words.sort((string, anotherString) -> Integer.compare(string.length(), anotherString.length()));
 		System.out.println(words); // [one word, other words, another word]
-		System.out.println("other words".length());
 
-		Consumer<String> consumer = new PrintOnLine();
-		words.forEach(consumer);
+		words.forEach(string -> System.out.println(string));
 		/*
 		 * one word
 		 * other words
@@ -27,20 +23,4 @@ public class StringSort {
 		 */
 	}
 
-}
-
-class PrintOnLine implements Consumer<String> {
-
-	@Override
-	public void accept(String string) {
-		System.out.println(string);
-	}
-}
-
-class ComparingBySize implements Comparator<String> {
-
-	@Override
-	public int compare(String string, String anotherString) {
-		return Integer.compare(string.length(), anotherString.length());
-	}
 }
