@@ -1,5 +1,6 @@
 package br.com.alura.java8.test;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -20,6 +21,27 @@ public class StringSort {
 		 * one word
 		 * other words
 		 * another word
+		 */
+
+//		Simplifications and method references
+		words.sort(Comparator.comparing(string -> string.length())); // same as line 15
+		words.sort(Comparator.comparing(String::length)); // same as line 25
+
+		words.forEach(System.out::println); // same as line 18
+		/*
+		 * one word
+		 * other words
+		 * another word
+		 */
+
+//		Changing the order
+		System.out.println("-> Changing to CASE_INSENSITIVE_ORDER");
+		words.sort(String.CASE_INSENSITIVE_ORDER);
+		words.forEach(System.out::println);
+		/*
+		 * another word
+		 * one word
+		 * other words
 		 */
 	}
 
