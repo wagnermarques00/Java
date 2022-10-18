@@ -1,13 +1,14 @@
 package br.com.alura.tdd.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 public class Employee {
 
-	private String name;
-	private LocalDate admissionDate;
-	private final BigDecimal salary;
+	private final String name;
+	private final LocalDate admissionDate;
+	private BigDecimal salary;
 
 	public Employee(String name, LocalDate admissionDate, BigDecimal salary) {
 		this.name = name;
@@ -27,4 +28,8 @@ public class Employee {
 		return salary;
 	}
 
+	public void readjustSalary(BigDecimal readjustment) {
+		this.salary = this.salary.add(readjustment)
+								 .setScale(2, RoundingMode.HALF_UP);
+	}
 }
