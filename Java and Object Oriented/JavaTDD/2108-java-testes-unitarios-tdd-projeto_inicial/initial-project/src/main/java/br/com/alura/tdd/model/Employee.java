@@ -29,7 +29,11 @@ public class Employee {
 	}
 
 	public void readjustSalary(BigDecimal readjustment) {
-		this.salary = this.salary.add(readjustment)
-								 .setScale(2, RoundingMode.HALF_UP);
+		this.salary = this.salary.add(readjustment);
+		roundUpSalary();
+	}
+
+	private void roundUpSalary() { // you cannot test this method
+		this.salary = this.salary.setScale(2, RoundingMode.HALF_UP);
 	}
 }
