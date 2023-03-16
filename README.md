@@ -21,4 +21,4 @@ Studies carried out on the Alura platform. I will choose to put the codes in Eng
 
 ## Currently studying:
 
-- 
+- Java and JDBC - Working with a Database
