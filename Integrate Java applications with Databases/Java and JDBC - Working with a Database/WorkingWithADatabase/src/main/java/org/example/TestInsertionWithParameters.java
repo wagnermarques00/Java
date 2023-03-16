@@ -1,22 +1,26 @@
 package org.example;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class TestInsertion {
+public class TestInsertionWithParameters {
+
 	public static void main(String[] args) throws SQLException {
-		String name = "Mouse";
+		String name = "Mouse'"; // Simulating a possible error without treatment
 		String description = "Wireless Mouse";
-		String insertProduct = "INSERT INTO product(name, description) VALUES('" + name + "', '" + description + "')";
-		System.out.println(insertProduct);
+		String insertProduct = "INSERT INTO product(name, description) VALUES(?, ?)";
 
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection connection = connectionFactory.recoverConnection();
 
-		Statement statement = connection.createStatement();
-		statement.execute(insertProduct, Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement statement = connection.prepareStatement(insertProduct, Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, name);
+		statement.setString(2, description);
+
+		statement.execute();
 
 		ResultSet resultSet = statement.getGeneratedKeys();
 		while(resultSet.next()) {

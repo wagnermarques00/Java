@@ -1,18 +1,20 @@
 package org.example;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TestListing {
 
 	public static void main(String[] args) throws SQLException {
+		String selectAllProducts = "SELECT id, name, description FROM product";
+
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection connection = connectionFactory.recoverConnection();
 
-		Statement statement = connection.createStatement();
-		statement.execute("SELECT id, name, description FROM product");
+		PreparedStatement statement = connection.prepareStatement(selectAllProducts);
+		statement.execute();
 
 		ResultSet resultSet = statement.getResultSet();
 
