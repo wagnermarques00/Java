@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.factory.ConnectionFactory;
 import org.junit.Test;
 
 import java.sql.Connection;

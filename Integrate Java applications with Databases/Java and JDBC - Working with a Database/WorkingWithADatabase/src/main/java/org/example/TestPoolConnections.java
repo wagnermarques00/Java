@@ -2,14 +2,16 @@ package org.example;
 
 import org.example.factory.ConnectionFactory;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
-public class TestConnection {
+public class TestPoolConnections {
+
 	public static void main(String[] args) throws SQLException {
 		ConnectionFactory connectionFactory = new ConnectionFactory();
-		Connection connection = connectionFactory.recoverConnection();
 
-		connection.close();
+		for(int i = 0; i < 20; i++) {
+			connectionFactory.recoverConnection();
+			System.out.println("Connection number: " + (i + 1));
+		}
 	}
 }
