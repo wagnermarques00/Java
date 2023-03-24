@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TestListing {
+public class TestListingProduct {
 
 	public static void main(String[] args) throws SQLException {
 		String selectAllProducts = "SELECT id, name, description FROM product";

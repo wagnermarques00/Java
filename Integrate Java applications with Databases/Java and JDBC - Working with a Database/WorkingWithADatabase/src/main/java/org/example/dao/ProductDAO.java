@@ -1,6 +1,7 @@
 package org.example.dao;
 
 
+import org.example.model.Category;
 import org.example.model.Product;
 
 import java.sql.Connection;
@@ -39,11 +40,32 @@ public class ProductDAO {
 	}
 
 	public List<Product> list() throws SQLException {
-		List<Product> products = new ArrayList<Product>();
+		List<Product> products = new ArrayList<>();
 		String selectStatement = "SELECT id, name, description FROM product";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(selectStatement);
 		try(preparedStatement) {
+			preparedStatement.execute();
+
+			ResultSet resultSet = preparedStatement.getResultSet();
+			try(resultSet) {
+				while(resultSet.next()) {
+					Product product = new Product(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));
+
+					products.add(product);
+				}
+			}
+		}
+		return products;
+	}
+
+	public List<Product> searchByCategory(Category category) throws SQLException {
+		List<Product> products = new ArrayList<>();
+		String selectStatement = "SELECT id, name, description FROM product WHERE category_ID = ?";
+
+		PreparedStatement preparedStatement = connection.prepareStatement(selectStatement);
+		try(preparedStatement) {
+			preparedStatement.setInt(1, category.getId());
 			preparedStatement.execute();
 
 			ResultSet resultSet = preparedStatement.getResultSet();
