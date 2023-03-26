@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Category {
 
-	private Integer id;
-	private String name;
-	private List<Product> products = new ArrayList<>();
+	private final Integer id;
+	private final String name;
+	private final List<Product> products = new ArrayList<>();
 
 	public Category(Integer id, String name) {
 		this.id = id;
@@ -28,5 +28,10 @@ public class Category {
 
 	public void addProduct(Product product) {
 		products.add(product);
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
 	}
 }

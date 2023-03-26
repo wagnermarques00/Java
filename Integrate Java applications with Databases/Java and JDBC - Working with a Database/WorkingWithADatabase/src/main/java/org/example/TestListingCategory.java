@@ -17,7 +17,7 @@ public class TestListingCategory {
 
 		try(connection) {
 			CategoryDAO categoryDAO = new CategoryDAO(connection);
-			List<Category> categoriesList = categoryDAO.listCategoriesWithProducts();
+			List<Category> categoriesList = categoryDAO.listWithProducts();
 
 			categoriesList.stream()
 						  .forEach(category -> {

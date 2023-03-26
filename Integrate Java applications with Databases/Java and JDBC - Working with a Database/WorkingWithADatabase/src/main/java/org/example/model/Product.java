@@ -2,9 +2,10 @@ package org.example.model;
 
 public class Product {
 
-	private final String name;
-	private final String description;
 	private Integer id;
+	private String name;
+	private String description;
+	private Integer categoryId;
 
 	public Product(String name, String description) {
 		this.name = name;
@@ -17,6 +18,10 @@ public class Product {
 		this.description = description;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -27,6 +32,14 @@ public class Product {
 
 	public String getDescription() {
 		return description;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	@Override
