@@ -23,7 +23,7 @@ public class ProductRegistration {
 
 		categoryDAO.create(cellphones);
 		productDAO.create(phone);
-		
+
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}

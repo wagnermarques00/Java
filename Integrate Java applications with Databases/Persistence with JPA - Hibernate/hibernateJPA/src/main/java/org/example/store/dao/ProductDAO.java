@@ -15,4 +15,13 @@ public class ProductDAO {
 	public void create(Product product) {
 		this.entityManager.persist(product);
 	}
+
+	public void update(Product product) {
+		this.entityManager.merge(product);
+	}
+
+	public void delete(Product product) {
+		product = entityManager.merge(product);
+		this.entityManager.remove(product);
+	}
 }
