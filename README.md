@@ -19,7 +19,8 @@ Studies carried out on the Alura platform. I will choose to put the codes in Eng
 1. Java 8: discover what's new in this version
 1. TDD and Java: Automated Testing with JUnit
 1. Java and JDBC - Working with a Database
+1. Persistence with JPA: Hibernate
 
 ## Currently studying:
 
-- Persistence with JPA: Hibernate
+- 
