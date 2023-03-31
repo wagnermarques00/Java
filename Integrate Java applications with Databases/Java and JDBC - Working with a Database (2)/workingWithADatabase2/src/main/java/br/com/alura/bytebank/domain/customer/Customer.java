@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class Customer {
 
-    private String nome;
+    private String name;
     private String cpf;
     private String email;
 
-    public Customer(CustomerData dados) {
-        this.nome = dados.nome();
-        this.cpf = dados.cpf();
-        this.email = dados.email();
+    public Customer(CustomerData data) {
+        this.name = data.name();
+        this.cpf = data.cpf();
+        this.email = data.email();
     }
 
     @Override
@@ -30,14 +30,14 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "nome='" + nome + '\'' +
+                "name='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
     public String getCpf() {
