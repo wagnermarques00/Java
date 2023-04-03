@@ -11,15 +11,16 @@ import java.util.Set;
 
 public class AccountService {
 
-	private final ConnectionFactory connectionFactory;
-	private final Set<Account> accounts = new HashSet<>();
+	private ConnectionFactory connectionFactory;
+	private Set<Account> accounts = new HashSet<>();
 
 	public AccountService() {
 		this.connectionFactory = new ConnectionFactory();
 	}
 
 	public Set<Account> listOpenAccounts() {
-		return accounts;
+		Connection connection = connectionFactory.recoverConnection();
+		return new AccountDAO(connection).listAll();
 	}
 
 	public BigDecimal consultBalance(Integer accountNumber) {
