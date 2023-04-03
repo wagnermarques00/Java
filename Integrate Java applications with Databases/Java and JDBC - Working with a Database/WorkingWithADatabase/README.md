@@ -25,7 +25,7 @@ To import external dependencies in Java using IntelliJ IDEA, follow these steps:
 
 1. Download the necessary dependency files. These files typically have a .jar extension and can be found on Java library repository sites like Maven Central.
 2. In this project the files are:
-   1. mysql-connector-java-8.0.17.jar
+   - mysql-connector-java-8.0.17.jar
    - c3p0-0.9.5.4.jar
    - mchange-commons-java-0.2.16.jar
 3. Copy the dependency files to a folder in your project directory. For example, you can create a "lib" folder in the project root directory and copy the files there.
