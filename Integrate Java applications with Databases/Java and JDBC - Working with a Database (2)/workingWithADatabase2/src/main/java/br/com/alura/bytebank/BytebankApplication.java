@@ -85,7 +85,7 @@ public class BytebankApplication {
         System.out.println("Enter account number:");
         var accountNumber = keyboard.nextInt();
 
-        service.closeAccount(accountNumber);
+        service.logicalCloseAccount(accountNumber);
 
         System.out.println("Account closed successfully!");
         System.out.println("Press any key and ENTER to return to the main menu");

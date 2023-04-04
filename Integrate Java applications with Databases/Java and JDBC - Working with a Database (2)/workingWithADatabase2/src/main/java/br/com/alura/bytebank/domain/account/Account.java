@@ -10,11 +10,13 @@ public class Account {
     private Integer number;
     private BigDecimal balance;
     private Customer customer;
+    private Boolean isActive;
 
-    public Account(Integer number, BigDecimal balance, Customer customer) {
+    public Account(Integer number, BigDecimal balance, Customer customer, Boolean isActive) {
         this.number = number;
         this.customer = customer;
         this.balance = balance;
+        this.isActive = isActive;
     }
 
     public boolean hasBalance() {
@@ -57,5 +59,9 @@ public class Account {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public Boolean getActive() {
+        return isActive;
     }
 }

@@ -20,18 +20,19 @@ public class AccountDAO {
 	}
 
 	public void save(AccountOpeningData accountData) {
+		String INSERT_STATEMENT = "INSERT INTO account (number, balance, customer_name, customer_cpf, customer_email)" + "VALUES (?, ?, ?, ?, ?, ?)";
 		Customer customer = new Customer(accountData.customerData());
-		Account account = new Account(accountData.number(), BigDecimal.ZERO, customer);
-		String insertStatement = "INSERT INTO account (number, balance, customer_name, customer_cpf, customer_email)" + "VALUES (?, ?, ?, ?, ?)";
+		Account account = new Account(accountData.number(), BigDecimal.ZERO, customer, true);
 
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(insertStatement);
+			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_STATEMENT);
 
 			preparedStatement.setInt(1, account.getNumber());
 			preparedStatement.setBigDecimal(2, BigDecimal.ZERO);
 			preparedStatement.setString(3, accountData.customerData().name());
 			preparedStatement.setString(4, accountData.customerData().cpf());
 			preparedStatement.setString(5, accountData.customerData().email());
+			preparedStatement.setBoolean(6, true);
 
 			preparedStatement.execute();
 			preparedStatement.close();
@@ -41,8 +42,8 @@ public class AccountDAO {
 		}
 	}
 
-	public Set<Account> listAll() {
-		String SELECT_STATEMENT = "SELECT * FROM account";
+	public Set<Account> listAll()  {
+		String SELECT_STATEMENT = "SELECT * FROM account WHERE is_active = true";
 		Set<Account> accounts = new HashSet<>();
 		PreparedStatement preparedStatement;
 		ResultSet resultSet;
@@ -57,11 +58,12 @@ public class AccountDAO {
 				String name = resultSet.getString(3);
 				String cpf = resultSet.getString(4);
 				String email = resultSet.getString(5);
+				Boolean isActive = resultSet.getBoolean(6);
 
 				CustomerData customerData = new CustomerData(name, cpf, email);
 				Customer customer = new Customer(customerData);
 
-				accounts.add(new Account(number, balance, customer));
+				accounts.add(new Account(number, balance, customer, isActive));
 			}
 			resultSet.close();
 			preparedStatement.close();
@@ -73,7 +75,7 @@ public class AccountDAO {
 	}
 
 	public Account listByNumber(Integer number) {
-		String SELECT_STATEMENT = "SELECT * FROM account WHERE number = ?";
+		String SELECT_STATEMENT = "SELECT * FROM account WHERE number = ? AND is_active = true ";
 
 		PreparedStatement preparedStatement;
 		ResultSet resultSet;
@@ -90,10 +92,11 @@ public class AccountDAO {
 				String name = resultSet.getString(3);
 				String cpf = resultSet.getString(4);
 				String email = resultSet.getString(5);
+				Boolean isActive = resultSet.getBoolean(6);
 
 				CustomerData customerData = new CustomerData(name, cpf, email);
 				Customer customer = new Customer(customerData);
-				account = new Account(accountNumber, balance, customer);
+				account = new Account(accountNumber, balance, customer, isActive);
 			}
 			resultSet.close();
 			preparedStatement.close();
@@ -111,7 +114,6 @@ public class AccountDAO {
 		try {
 			connection.setAutoCommit(false);
 			preparedStatement = connection.prepareStatement(UPDATE_STATEMENT);
-
 			preparedStatement.setBigDecimal(1, amount);
 			preparedStatement.setInt(2, number);
 
@@ -128,6 +130,54 @@ public class AccountDAO {
 			}
 			throw new RuntimeException(e);
 		}
-
 	}
+
+	public void deleteByNumber(Integer accountNumber) {
+		String DELETE_STATEMENT = "DELETE FROM account WHERE number = ?";
+		PreparedStatement preparedStatement;
+
+		try {
+			connection.setAutoCommit(false);
+			preparedStatement = connection.prepareStatement(DELETE_STATEMENT);
+			preparedStatement.setInt(1, accountNumber);
+
+			preparedStatement.execute();
+			connection.commit();
+
+			preparedStatement.close();
+			connection.close();
+		} catch(SQLException e) {
+			try {
+				connection.rollback();
+			} catch(SQLException ex) {
+				throw new RuntimeException(ex);
+			}
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void logicalUpdate(Integer accountNumber) {
+		String UPDATE_STATEMENT = "UPDATE account SET is_active = FALSE WHERE number = ?";
+		PreparedStatement preparedStatement;
+
+		try {
+			connection.setAutoCommit(false);
+			preparedStatement = connection.prepareStatement(UPDATE_STATEMENT);
+			preparedStatement.setInt(1, accountNumber);
+
+			preparedStatement.execute();
+			connection.commit();
+
+			preparedStatement.close();
+			connection.close();
+		} catch(SQLException e) {
+			try {
+				connection.rollback();
+			} catch(SQLException ex) {
+				throw new RuntimeException(ex);
+			}
+			throw new RuntimeException(e);
+		}
+	}
+
 }

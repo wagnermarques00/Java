@@ -5,13 +5,11 @@ import br.com.alura.bytebank.domain.BusinessRuleException;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.util.HashSet;
 import java.util.Set;
 
 public class AccountService {
 
 	private ConnectionFactory connectionFactory;
-	private Set<Account> accounts = new HashSet<>();
 
 	public AccountService() {
 		this.connectionFactory = new ConnectionFactory();
@@ -44,6 +42,10 @@ public class AccountService {
 			throw new BusinessRuleException("Insufficient balance!");
 		}
 
+		if(!account.getActive()) {
+			throw new BusinessRuleException("Account is not active");
+		}
+
 		BigDecimal newBalance = account.getBalance().subtract(amount);
 		Connection connection = connectionFactory.recoverConnection();
 		AccountDAO accountDAO = new AccountDAO(connection);
@@ -55,6 +57,10 @@ public class AccountService {
 		var account = searchAccountByNumber(accountNumber);
 		if(amount.compareTo(BigDecimal.ZERO) <= 0) {
 			throw new BusinessRuleException("Deposit amount must be greater than zero!");
+		}
+
+		if(!account.getActive()) {
+			throw new BusinessRuleException("Account is not active");
 		}
 
 		BigDecimal newBalance = account.getBalance().add(amount);
@@ -75,7 +81,22 @@ public class AccountService {
 			throw new BusinessRuleException("Account cannot be closed because it still has balance!");
 		}
 
-		accounts.remove(account);
+		Connection connection = connectionFactory.recoverConnection();
+		AccountDAO accountDAO = new AccountDAO(connection);
+
+		accountDAO.deleteByNumber(accountNumber);
+	}
+
+	public void logicalCloseAccount(Integer accountNumber) {
+		var account = searchAccountByNumber(accountNumber);
+		if(account.hasBalance()) {
+			throw new BusinessRuleException("Account cannot be closed because it still has balance!");
+		}
+
+		Connection connection = connectionFactory.recoverConnection();
+		AccountDAO accountDAO = new AccountDAO(connection);
+
+		accountDAO.logicalUpdate(accountNumber);
 	}
 
 	private Account searchAccountByNumber(Integer number) {
