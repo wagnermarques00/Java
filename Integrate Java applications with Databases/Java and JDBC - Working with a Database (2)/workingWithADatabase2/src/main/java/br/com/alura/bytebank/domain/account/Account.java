@@ -9,24 +9,20 @@ public class Account {
 
     private Integer number;
     private BigDecimal balance;
-    private Customer owner;
+    private Customer customer;
 
-    public Account(Integer number, Customer owner) {
+    public Account(Integer number, BigDecimal balance, Customer customer) {
         this.number = number;
-        this.owner = owner;
-        this.balance = BigDecimal.ZERO;
+        this.customer = customer;
+        this.balance = balance;
     }
 
     public boolean hasBalance() {
         return this.balance.compareTo(BigDecimal.ZERO) != 0;
     }
 
-    public void withdraw(BigDecimal value) {
-        this.balance = this.balance.subtract(value);
-    }
-
-    public void deposit(BigDecimal value) {
-        this.balance = this.balance.add(value);
+    public void withdraw(BigDecimal amount) {
+        this.balance = this.balance.subtract(amount);
     }
 
     @Override
@@ -47,7 +43,7 @@ public class Account {
         return "Account{" +
                 "number='" + number + '\'' +
                 ", balance=" + balance +
-                ", owner=" + owner +
+                ", owner=" + customer +
                 '}';
     }
 
@@ -59,7 +55,7 @@ public class Account {
         return balance;
     }
 
-    public Customer getOwner() {
-        return owner;
+    public Customer getCustomer() {
+        return customer;
     }
 }

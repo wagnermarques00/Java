@@ -5,6 +5,7 @@ import br.com.alura.bytebank.domain.customer.CustomerData;
 import br.com.alura.bytebank.domain.account.AccountService;
 import br.com.alura.bytebank.domain.account.AccountOpeningData;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class BytebankApplication {
@@ -14,7 +15,7 @@ public class BytebankApplication {
 
     public static void main(String[] args) {
         var option = showMenu();
-        while (option != 7) {
+        while (option != 8) {
             try {
                 switch(option) {
                     case 1 -> listAccounts();
@@ -23,6 +24,7 @@ public class BytebankApplication {
                     case 4 -> checkBalance();
                     case 5 -> makeWithdraw();
                     case 6 -> makeDeposit();
+                    case 7 -> makeTransfer();
                 }
             } catch (BusinessRuleException e) {
                 System.out.println("Error: " +e.getMessage());
@@ -44,7 +46,8 @@ public class BytebankApplication {
                 4 - Check account's balance
                 5 - Withdraw from an account
                 6 - Make a deposit into an account
-                7 - Exit
+                7 - Make a transfer
+                8 - Exit
             """);
         return keyboard.nextInt();
     }
@@ -113,7 +116,7 @@ public class BytebankApplication {
     }
 
     private static void makeDeposit() {
-        System.out.println("Enter account number:");
+        System.out.println("Enter the account number:");
         var accountNumber = keyboard.nextInt();
 
         System.out.println("Enter the deposit amount:");
@@ -122,6 +125,23 @@ public class BytebankApplication {
         service.doDeposit(accountNumber, amount);
 
         System.out.println("Deposit made successfully!");
+        System.out.println("Press any key and ENTER to return to the main menu");
+        keyboard.next();
+    }
+
+    private static void makeTransfer() {
+        System.out.println("Enter the origin account:");
+        Integer originAccountNumber = keyboard.nextInt();
+
+        System.out.println("Enter the destination account:");
+        Integer destinationAccountNumber = keyboard.nextInt();
+
+        System.out.println("Enter the amount to deposit:");
+        BigDecimal amount = keyboard.nextBigDecimal();
+
+        service.doTransfer(originAccountNumber, destinationAccountNumber, amount);
+
+        System.out.println("Transfer made successfully!");
         System.out.println("Press any key and ENTER to return to the main menu");
         keyboard.next();
     }

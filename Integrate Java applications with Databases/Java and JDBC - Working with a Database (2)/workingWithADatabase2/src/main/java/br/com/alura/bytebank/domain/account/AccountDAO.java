@@ -21,7 +21,7 @@ public class AccountDAO {
 
 	public void save(AccountOpeningData accountData) {
 		Customer customer = new Customer(accountData.customerData());
-		Account account = new Account(accountData.number(), customer);
+		Account account = new Account(accountData.number(), BigDecimal.ZERO, customer);
 		String insertStatement = "INSERT INTO account (number, balance, customer_name, customer_cpf, customer_email)" + "VALUES (?, ?, ?, ?, ?)";
 
 		try {
@@ -61,7 +61,7 @@ public class AccountDAO {
 				CustomerData customerData = new CustomerData(name, cpf, email);
 				Customer customer = new Customer(customerData);
 
-				accounts.add(new Account(number, customer));
+				accounts.add(new Account(number, balance, customer));
 			}
 			resultSet.close();
 			preparedStatement.close();
@@ -93,7 +93,7 @@ public class AccountDAO {
 
 				CustomerData customerData = new CustomerData(name, cpf, email);
 				Customer customer = new Customer(customerData);
-				account = new Account(accountNumber, customer);
+				account = new Account(accountNumber, balance, customer);
 			}
 			resultSet.close();
 			preparedStatement.close();
@@ -102,5 +102,32 @@ public class AccountDAO {
 			throw new RuntimeException(e);
 		}
 		return account;
+	}
+
+	public void updateBalance(Integer number, BigDecimal amount) {
+		String UPDATE_STATEMENT = "UPDATE account SET balance = ? WHERE number = ?";
+		PreparedStatement preparedStatement;
+
+		try {
+			connection.setAutoCommit(false);
+			preparedStatement = connection.prepareStatement(UPDATE_STATEMENT);
+
+			preparedStatement.setBigDecimal(1, amount);
+			preparedStatement.setInt(2, number);
+
+			preparedStatement.execute();
+			connection.commit();
+
+			preparedStatement.close();
+			connection.close();
+		} catch(SQLException e) {
+			try {
+				connection.rollback();
+			} catch(SQLException ex) {
+				throw new RuntimeException(ex);
+			}
+			throw new RuntimeException(e);
+		}
+
 	}
 }

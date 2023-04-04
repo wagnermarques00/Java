@@ -6,7 +6,6 @@ import br.com.alura.bytebank.domain.BusinessRuleException;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class AccountService {
@@ -45,7 +44,11 @@ public class AccountService {
 			throw new BusinessRuleException("Insufficient balance!");
 		}
 
-		account.withdraw(amount);
+		BigDecimal newBalance = account.getBalance().subtract(amount);
+		Connection connection = connectionFactory.recoverConnection();
+		AccountDAO accountDAO = new AccountDAO(connection);
+
+		accountDAO.updateBalance(account.getNumber(), newBalance);
 	}
 
 	public void doDeposit(Integer accountNumber, BigDecimal amount) {
@@ -54,7 +57,16 @@ public class AccountService {
 			throw new BusinessRuleException("Deposit amount must be greater than zero!");
 		}
 
-		account.deposit(amount);
+		BigDecimal newBalance = account.getBalance().add(amount);
+		Connection connection = connectionFactory.recoverConnection();
+		AccountDAO accountDAO = new AccountDAO(connection);
+
+		accountDAO.updateBalance(account.getNumber(), newBalance);
+	}
+
+	public void doTransfer(Integer originAccountNumber, Integer destinationAccountNumber, BigDecimal amount) {
+		this.doWithdraw(originAccountNumber, amount);
+		this.doDeposit(destinationAccountNumber, amount);
 	}
 
 	public void closeAccount(Integer accountNumber) {
@@ -67,7 +79,13 @@ public class AccountService {
 	}
 
 	private Account searchAccountByNumber(Integer number) {
-		return accounts.stream().filter(c -> Objects.equals(c.getNumber(), number)).findFirst()
-					   .orElseThrow(() -> new BusinessRuleException("There is no account registered with this number!"));
+		Connection connection = connectionFactory.recoverConnection();
+		Account account = new AccountDAO(connection).listByNumber(number);
+
+		if(account != null) {
+			return account;
+		} else {
+			throw new BusinessRuleException("There is no account associated with this number.");
+		}
 	}
 }
