@@ -3,6 +3,7 @@ package br.com.alura.store.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.lang.model.type.UnionType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

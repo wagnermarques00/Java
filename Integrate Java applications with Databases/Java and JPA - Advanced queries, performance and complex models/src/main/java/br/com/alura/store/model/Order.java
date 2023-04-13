@@ -18,7 +18,7 @@ public class Order {
 	private LocalDate registrationDate = LocalDate.now();
 
 	@Column(name = "order_total")
-	private BigDecimal orderTotal;
+	private BigDecimal orderTotal = BigDecimal.ZERO;
 
 	@ManyToOne
 	private Customer customer;
@@ -36,6 +36,7 @@ public class Order {
 	public void addProduct(OrderProduct item) {
 		item.setOrder(this);
 		this.orderProducts.add(item);
+		this.orderTotal = this.orderTotal.add(item.getItemTotalValue());
 	}
 
 	public Long getId() {
