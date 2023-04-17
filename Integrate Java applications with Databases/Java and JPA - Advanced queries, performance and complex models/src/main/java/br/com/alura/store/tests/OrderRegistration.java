@@ -53,7 +53,6 @@ public class OrderRegistration {
 		entityManager.close();
 	}
 
-
 	private static void createOrder() {
 		EntityManager entityManager = UtilJPA.getEntityManager();
 		ProductDAO productDAO = new ProductDAO(entityManager);
@@ -67,7 +66,7 @@ public class OrderRegistration {
 
 		entityManager.getTransaction().begin();
 
-		Order order1 = new  Order(customer);
+		Order order1 = new Order(customer);
 		order1.addProduct(new OrderProduct(10, order1, cellphone));
 		order1.addProduct(new OrderProduct(40, order1, ps5));
 
@@ -90,6 +89,9 @@ public class OrderRegistration {
 	private static void printSalesReportByProduct() {
 		EntityManager entityManager = UtilJPA.getEntityManager();
 		OrderDAO orderDAO = new OrderDAO(entityManager);
+
+		Order order = orderDAO.findOrderByIdWithCustomer(1L);
+		System.out.println(order.getCustomer().getName());
 
 		List<SalesReportVo> report = orderDAO.salesReport();
 		report.forEach(System.out::println);

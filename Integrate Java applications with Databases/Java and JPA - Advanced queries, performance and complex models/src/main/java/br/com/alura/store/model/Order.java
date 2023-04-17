@@ -20,7 +20,7 @@ public class Order {
 	@Column(name = "order_total")
 	private BigDecimal orderTotal = BigDecimal.ZERO;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Customer customer;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // bidirectional relationship

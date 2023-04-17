@@ -34,10 +34,16 @@ public class OrderDAO {
 		return entityManager.find(Order.class, id);
 	}
 
-
 	public BigDecimal calculateTotalSalesValue() {
 		String JPQL_SELECT_STATEMENT = "SELECT SUM(o.orderTotal) FROM Order o";
 		return entityManager.createQuery(JPQL_SELECT_STATEMENT, BigDecimal.class).getSingleResult();
+	}
+
+	public Order findOrderByIdWithCustomer(Long id) {
+		String SELECT_STATEMENT = "SELECT o FROM Order o JOIN FETCH o.customer WHERE o.id = :id";
+		return entityManager.createQuery(SELECT_STATEMENT, Order.class)
+							.setParameter("id", id)
+							.getSingleResult();
 	}
 
 }
