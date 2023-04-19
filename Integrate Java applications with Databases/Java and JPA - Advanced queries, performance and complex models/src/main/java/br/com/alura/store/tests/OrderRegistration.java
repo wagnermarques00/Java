@@ -90,9 +90,6 @@ public class OrderRegistration {
 		EntityManager entityManager = UtilJPA.getEntityManager();
 		OrderDAO orderDAO = new OrderDAO(entityManager);
 
-		Order order = orderDAO.findOrderByIdWithCustomer(1L);
-		System.out.println(order.getCustomer().getName());
-
 		List<SalesReportVo> report = orderDAO.salesReport();
 		report.forEach(System.out::println);
 	}

@@ -40,8 +40,8 @@ public class OrderDAO {
 	}
 
 	public Order findOrderByIdWithCustomer(Long id) {
-		String SELECT_STATEMENT = "SELECT o FROM Order o JOIN FETCH o.customer WHERE o.id = :id";
-		return entityManager.createQuery(SELECT_STATEMENT, Order.class)
+		String JPQL_SELECT_STATEMENT = "SELECT o FROM Order o JOIN FETCH o.customer WHERE o.id = :id";
+		return entityManager.createQuery(JPQL_SELECT_STATEMENT, Order.class)
 							.setParameter("id", id)
 							.getSingleResult();
 	}
