@@ -4,17 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.lang.model.type.UnionType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "products")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Product {
 
 	@Id
